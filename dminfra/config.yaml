@@ -1,3 +1,6 @@
+imports:
+- path: instance-template.jinja
+
 resources:
 # Creating Network for our deployment
 - name: mypronetwork
@@ -26,3 +29,12 @@ resources:
     allowed:
     - IPProtocol: TCP
       ports: ["80"]
+
+- name: my-wordpress-template
+# wordpress template
+  type: instance-template.jinja
+  properties:
+    zone: us-central1-a
+    machineType: e2-medium
+    network: $(ref.mypronetwork.selfLink)
+    subnetwork: regions/us-central1/subnetworks/mypronetwork
