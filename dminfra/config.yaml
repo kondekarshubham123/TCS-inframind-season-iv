@@ -1,0 +1,25 @@
+resources:
+- name: mypronetwork
+  type: compute.v1.network
+  properties:
+    autoCreateSubnetworks: true
+
+- name: mypronetwork-allow-http-ssh-rdp-icmp
+  type: compute.v1.firewall
+  properties:
+    network: $(ref.mypronetwork.selfLink)
+    sourceRanges: ["0.0.0.0/0"]
+    allowed:
+    - IPProtocol: TCP
+      ports: [22,80,3389]
+    - IPProtocol: ICMP
+
+- name: mypronetwork-wordpress-firewall-rule
+  type: compute.v1.firewall
+  properties:
+    network: $(ref.mypronetwork.selfLink)
+    sourceRanges: ["0.0.0.0/0"]
+    targetTags: ["wordpress"]
+    allowed:
+    - IPProtocol: TCP
+      ports: ["80"]
