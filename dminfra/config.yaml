@@ -1,10 +1,12 @@
 resources:
+# Creating Network for our deployment
 - name: mypronetwork
   type: compute.v1.network
   properties:
     autoCreateSubnetworks: true
 
 - name: mypronetwork-allow-http-ssh-rdp-icmp
+# Firewall rule for allowing http-ssh-rdp and icmp
   type: compute.v1.firewall
   properties:
     network: $(ref.mypronetwork.selfLink)
@@ -15,6 +17,7 @@ resources:
     - IPProtocol: ICMP
 
 - name: mypronetwork-wordpress-firewall-rule
+# firewall rule for wordpress with target
   type: compute.v1.firewall
   properties:
     network: $(ref.mypronetwork.selfLink)
