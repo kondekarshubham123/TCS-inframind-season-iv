@@ -12,8 +12,9 @@ click [here](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/
 ## Proposed Solution
 Overall solution is template driven, just we have to run the script. It will automatically create VPN networks, managing databases, deploying template ,etc.. without manual work which reduces a lot of time and manpower.
 
-## Infrastructure Design
-![Infrastructure](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/Images/Infrastructure.png)
+## Script workflow
+![Workflow](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/Images/Script%20Workflow.png)
+
 
 ## Usage
 Please feel free to check deployment steps from [Here](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/Deployment-Steps)
