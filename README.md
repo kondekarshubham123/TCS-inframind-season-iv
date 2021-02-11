@@ -1,5 +1,5 @@
 # TCS-inframind-season-iv | Autonomous IT
-![Inframind](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/Images/TCS%20InfraMind%20campus%20commune.jpg)
+![Inframind](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/Images/tcs-inframind.png)
 
 image credit: [campuscommune](https://campuscommune.tcs.com/)
 
