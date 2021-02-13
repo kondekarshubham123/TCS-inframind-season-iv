@@ -51,6 +51,7 @@ resources:
             - https://www.googleapis.com/auth/sqlservice.admin
             - https://www.googleapis.com/auth/cloudruntimeconfig
 
+# Instance Group manager using instance template
 - name: {{ env["name"] }}-igm
   type: compute.beta.instanceGroupManager
   properties:
@@ -62,7 +63,7 @@ resources:
       minimalAction: REPLACE
       type: PROACTIVE
 
-
+# Autoscaler for instance Group with 60% cpu utilization target by default 
 - name: {{ env["name"] }}-as
   type: compute.v1.autoscaler
   properties:
