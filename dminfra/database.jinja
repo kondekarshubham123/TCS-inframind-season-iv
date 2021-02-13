@@ -1,0 +1,63 @@
+{% set deployment = properties['deployment'] %}
+{% set dbMachineType = properties['dbMachineType'] %}
+{% set dbDataDiskSizeGb = properties['dbDataDiskSizeGb'] %}
+{% set dbDataDiskType = properties['dbDataDiskType'] %}
+{% set dbFailoverEnabled = properties['dbFailoverEnabled'] %}
+
+resources:
+# SQL Instance
+- name: {{ deployment }}-sql
+  type: sqladmin.v1beta4.instance
+  properties:
+    backendType: SECOND_GEN
+    databaseVersion: MYSQL_5_7
+    settings:
+      tier: {{ dbMachineType }}
+      backupConfiguration:
+        binaryLogEnabled: true
+        enabled: true
+      dataDiskSizeGb: {{ dbDataDiskSizeGb }}
+      dataDiskType: {{ dbDataDiskType }}
+
+{% if dbFailoverEnabled %}
+# SQL Failover Instance
+- name: {{ deployment }}-sql-failover
+  type: sqladmin.v1beta4.instance
+  properties:
+    backendType: SECOND_GEN
+    databaseVersion: MYSQL_5_7
+    masterInstanceName: {{ deployment }}-sql
+    replicaConfiguration:
+      failoverTarget: true
+    settings:
+      tier: {{ dbMachineType }}
+  metadata:
+    dependsOn:
+    - {{ deployment }}-sql
+{% endif %}
+
+# SQL wordpress DB
+- name: {{ deployment }}-database
+  type: sqladmin.v1beta4.database
+  properties:
+    name: wordpress
+    instance: $(ref.{{ deployment }}-sql.name)
+    charset: utf8
+  metadata:
+    dependsOn:
+    - {{ deployment }}-sql
+    {% if dbFailoverEnabled %}
+    - {{ deployment }}-sql-failover
+    {% endif %}
+
+# SQL User
+- name: {{ deployment }}-sql-wordpress-user
+  type: sqladmin.v1beta4.user
+  properties:
+    name: wordpress
+    host: 'cloudsqlproxy~%'
+    password: "changeme"
+    instance: $(ref.{{ deployment }}-sql.name)
+  metadata:
+    dependsOn:
+    - {{ deployment }}-database

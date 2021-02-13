@@ -1,5 +1,6 @@
 imports:
 - path: instance-template.jinja
+- path: database.jinja
 
 resources:
 # Creating Network for our deployment
@@ -38,3 +39,13 @@ resources:
     machineType: e2-medium
     network: $(ref.mypronetwork.selfLink)
     subnetwork: regions/us-central1/subnetworks/mypronetwork
+
+# Cloud SQL resources
+- name: "cloud-sql"
+  type: database.jinja
+  properties:
+    deployment: "master-instance-11"
+    dbMachineType: "db-n1-standard-1"
+    dbDataDiskSizeGb: "10.0"
+    dbDataDiskType: "PD_HDD"
+    dbFailoverEnabled: true
