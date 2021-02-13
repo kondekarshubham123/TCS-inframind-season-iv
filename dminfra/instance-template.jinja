@@ -1,6 +1,6 @@
 resources:
 # Content Instance template
-- name: {{ env["name"] }}
+- name: {{ env["name"] }}-admin-it
   type: compute.v1.instanceTemplate
   properties:
     zone: {{ properties["zone"] }}
@@ -50,3 +50,24 @@ resources:
           scopes:
             - https://www.googleapis.com/auth/sqlservice.admin
             - https://www.googleapis.com/auth/cloudruntimeconfig
+
+- name: {{ env["name"] }}-igm
+  type: compute.beta.instanceGroupManager
+  properties:
+    baseInstanceName: {{ env["name"] }}-instance
+    instanceTemplate: $(ref.{{ env["name"] }}-admin-it.selfLink)
+    zone: {{ properties["zone"] }}
+    targetSize: 1
+    updatePolicy:
+      minimalAction: REPLACE
+      type: PROACTIVE
+
+
+- name: {{ env["name"] }}-as
+  type: compute.v1.autoscaler
+  properties:
+    autoscalingPolicy:
+      minNumReplicas: {{ properties['minSize'] }}
+      maxNumReplicas: {{ properties['maxSize'] }}
+    target: $(ref.{{ env["name"] }}-igm.selfLink)
+    zone: {{ properties["zone"] }}

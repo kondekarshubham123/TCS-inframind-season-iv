@@ -35,6 +35,8 @@ resources:
 # wordpress template
   type: instance-template.jinja
   properties:
+    minSize: 1
+    maxSize: 3
     zone: us-central1-a
     machineType: e2-medium
     network: $(ref.mypronetwork.selfLink)
