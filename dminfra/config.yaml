@@ -46,7 +46,7 @@ resources:
 - name: "cloud-sql"
   type: database.jinja
   properties:
-    deployment: "master-instance-1009"
+    deployment: "master-instance-10099s"
     dbMachineType: "db-n1-standard-1"
     dbDataDiskSizeGb: "10.0"
     dbDataDiskType: "PD_HDD"
