@@ -18,7 +18,7 @@ Overall solution is template driven, just we have to run the script. It will aut
 
 ## Image Gallery
 
-Below image will give clear idea about how the interface looks like after automation
+Below image will give clear idea about how the interface looks like after Autoscaling
 
 ![Inframind](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/screenshots/Diff.jpg)
 Feel free to check more images from our [Image Gallery](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/Image-gallery)
