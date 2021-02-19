@@ -16,12 +16,12 @@ Overall solution is template driven, just we have to run the script. It will aut
 ![Workflow](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/Images/Script%20Workflow.png)
 
 
-## Usage
-Please feel free to check deployment steps from [Here](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/Deployment-Steps)
-
 ## Image Gallery
 
 Below image will give clear idea about how the interface looks like after automation
 
 ![Inframind](https://github.com/kondekarshubham123/TCS-inframind-season-iv/blob/main/DOCS/screenshots/Diff.jpg)
 Feel free to check more images from our [Image Gallery](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/Image-gallery)
+
+## Usage
+Please feel free to check deployment steps from [Here](https://github.com/kondekarshubham123/TCS-inframind-season-iv/wiki/Deployment-Steps)
