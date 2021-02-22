@@ -1,8 +1,11 @@
+# Service Account
 resource "google_service_account" "default" {
   account_id   = "service-account-id"
   display_name = "Service Account"
 }
 
+
+# Instance template for wordpress app
 resource "google_compute_instance_template" "my-wordpress-template" {
   name        = "my-wordpress-template"
   description = "This template is used to create wordpress server instances."
@@ -43,6 +46,8 @@ resource "google_compute_instance_template" "my-wordpress-template" {
   }
 }
 
+
+# health check for Instance group 
 resource "google_compute_health_check" "autohealing" {
   name                = "autohealing-health-check"
   check_interval_sec  = 5
@@ -56,6 +61,7 @@ resource "google_compute_health_check" "autohealing" {
   }
 }
 
+# Instance group Manager 
 resource "google_compute_instance_group_manager" "wordpress-igm" {
   name = "wordpress-igm"
 
