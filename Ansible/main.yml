@@ -1,0 +1,16 @@
+---
+- name: Update the both the servers with the latest patch/kernel version
+  hosts: all
+  become: true
+  tasks:
+    - name: Update packages list
+      apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: Upgrade all installed packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400

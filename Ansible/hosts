@@ -1,0 +1,4 @@
+35.188.212.203
+
+[all:vars]
+ansible_user=gcpuser
