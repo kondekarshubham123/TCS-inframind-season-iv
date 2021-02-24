@@ -79,3 +79,20 @@ resource "google_compute_instance_group_manager" "wordpress-igm" {
     initial_delay_sec = 300
   }
 }
+
+# autoscaler for Instance group
+resource "google_compute_autoscaler" "instance-autoscaler" {
+  name   = "instance-autoscaler"
+  zone   = var.zone
+  target = google_compute_instance_group_manager.wordpress-igm.self_link
+
+  autoscaling_policy {
+    max_replicas    = 3
+    min_replicas    = 1
+    cooldown_period = 60
+
+    cpu_utilization {
+      target = 0.7
+    }
+  }
+}
